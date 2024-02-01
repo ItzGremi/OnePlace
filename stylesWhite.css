@@ -1,699 +1,781 @@
+/* Cambios generales en la web */
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    }
+}
     
-    html{
-        scroll-behavior: smooth;
-    }
+/* Hacemos que cuando un un enlace nos lleve a otro lugar de la página sea scrolleando suave */
+html{
+    scroll-behavior: smooth;
+}
     
-    :root{
-        --Azul: rgb(2, 4, 4);
-        --Cabecera: rgb(6, 223, 226);
-        --Negro: rgb(253, 253, 253);
-        --Texto:rgb(2, 2, 2);
-        --Naranja:rgb(255, 132, 0);
-        --Amarillo:rgb(221, 221, 24);
-        --AzulOscuro:rgb(43, 102, 241);
-        --Morado:rgb(166, 9, 166);
-        --Rojo:rgb(225, 10, 10);
-        --Salmon:salmon;
-        --Rosa:rgb(255, 5, 142);
-        --Violeta:rgb(209, 94, 244);
-        --Verde:rgb(5, 130, 5);
-        --Marron:rgb(130, 56, 28);
-        --Beige:rgb(175, 175, 136);
-        --AmarilloOscuro:rgb(167, 164, 31);
-    }
-    body{
-        background-color: var(--Negro);
-    }
+/* Colores designados en raíz que utilizaremos más adelante */
+:root{
+    --Azul: rgb(2, 4, 4);
+    --Cabecera: rgb(6, 223, 226);
+    --Negro: rgb(253, 253, 253);
+    --Texto:rgb(2, 2, 2);
+    --Naranja:rgb(255, 132, 0);
+    --Amarillo:rgb(221, 221, 24);
+    --AzulOscuro:rgb(43, 102, 241);
+    --Morado:rgb(166, 9, 166);
+    --Rojo:rgb(225, 10, 10);
+    --Salmon:salmon;
+    --Rosa:rgb(255, 5, 142);
+    --Violeta:rgb(209, 94, 244);
+    --Verde:rgb(5, 130, 5);
+    --Marron:rgb(130, 56, 28);
+    --Beige:rgb(175, 175, 136);
+    --AmarilloOscuro:rgb(167, 164, 31);
+}
+
+/* Fondo de la página negro */
+body{
+    background-color: var(--Negro);
+}
+
+/* FUENTES DE LETRAS IMPORTADAS ****************************************************************/
+@font-face {
+    font-family: 'fran';
+    src: url('fonts/Franchise.ttf');
+}
+
+@font-face {
+    font-family: 'adventure';
+    src: url('fonts/Adventure.otf');
+}
+
+@font-face {
+    font-family: 'altone';
+    src: url('fonts/AltoneTrial-Bold.ttf');
+}
+/* FIN FUENTES DE LETRAS IMPORTADAS ****************************************************************/
+
+/* ANIMACIONES UTILIZADAS **********************************************************************/
+
+/* Animación cambiada para reutilizar código */
+@keyframes cambioColor {
+    0%{ color:rgb(8, 5, 209);}
+    20%{color:rgb(8, 5, 209);}
+    40%{color:rgb(8, 5, 209);}
+    60%{color:rgb(8, 5, 209);}
+    80%{color:rgb(8, 5, 209);}
+    100%{color:rgb(8, 5, 209);}
+}
+
+/* Animación para desplazar imágenes en el carrusel */
+@keyframes slider {
+    0% { margin-left: 0; }
+    25% { margin-left: 0; }
+
+    30% { margin-left: -100%; }
+    55% { margin-left: -100%; }
+
+    60% { margin-left: -200%; }
+    85% { margin-left: -200%; }
+
+    90% { margin-left: -300%; }
+    100% { margin-left: -300%; }
+}
+
+/* FIN ANIMACIONES UTILIZADAS **********************************************************************/
+/* CABECERA *********************************************************************************/
+
+/* Estilos generales de cabecera */
+.cabecera{
+    display:flex;  /* Modo flex */
+    flex-direction:row; /* En fila */
+    justify-content:space-between; /* Espacio entre elementos solo */
+    background-color:var(--Cabecera); /* Fondo */
+    height: 150px; /* Altura */
+}
+
+/* Estilos del logo en letra */
+.cabecera .logoLetra a h2{
+    color:var(--Azul); /* Color */
+    font-family: 'fran'; /* Fuente */
+    font-size:90px; /* Tamaño letra */
+    text-align: center; /* Alineación al centro */
+    margin-top:30px; /* Margen superior */
+    margin-left:30px; /* Margen a la izquierda */
+    cursor:pointer; /* Cursor de dedo */
+}
+
+/* Hover del logo en letra sin estar dentro */
+.logoLetra h2:hover{
+    animation-name:cambioColor; /* Animación de cambiar letras de color */
+    animation-duration: 2s; /* Que dure 2 segundos */
+    animation-iteration-count: infinite; /* Que nunca acabe */
+    transform:scale(1.1); /* Aumentamos tamaño de letra un 10% */
+}
+
+/* Estilos de cuando estés justamente en ese apartado */
+.logoLetra .actual a h2{
+    border-bottom: 2px solid var(--Azul); /* Borde inferior */
+}
+
+/* Hover del logo en letra cuando estás dentro */
+.logoLetra .actual a h2:hover{
+    border-bottom: 0px; /* Quitamos el borde inferior */
+    transform:scale(1); /* Que no se agrande cuando estés en ese apartado */
+}
+
+/* Logo */
+.logo img{
+    width:150px; /* Anchura */
+    height:auto; /* Altura */
+    cursor:pointer; /* Cursor de dedo */
+}
+
+/* Logo */
+#logo{
+    border-radius:40%; /* Borde redondeado */
+}
+
+/* Navegación */
+.navegacion {
+    display:flex; /* Modo flex */
+    flex-direction: row; /* En fila */
+    justify-content:space-between; /* Espacio entre elementos solo */
+    text-align:center; /* Alineación al centro */
+    margin-top:60px; /* Margen superior */
+}
+
+/* Navegación justo cuandso estoy en un apartado */
+.navegacion .actual a{
+    border-bottom: 2px solid var(--Azul); /* Borde inferior */
+    width:140px; /* Anchura de borde */
+}
+
+/* Hover de navegación justo cuandso estoy en un apartado */
+.navegacion .actual a:hover{
+    border-bottom: 0px; /* Quitamos borde */
+}
+
+/* Links navegación */
+.navegacion a{
+    margin-left:50px; /* Espacio izquierdo */
+    margin-right:50px; /* Espacio derecho */
+    text-decoration: none; /* Sin decoración */
+    font-size:32px; /* Tamaño de fuente */
+    color: var(--Azul); /* Color */
+    font-family: 'adventure'; /* Fuente */
+    cursor:pointer; /* Cursor de dedo */
+}
+
+/* Hover de links de navegación */
+.navegacion a:hover{
+    transform:scale(1.2); /* Tamaño de letra aumenta un 20% */
+    animation-name:cambioColor; /* Animación de cambiar color de letras */
+    animation-duration: 2s; /* Duración de 2 segundos */
+    animation-iteration-count: infinite; /* Infinito */
+}
+
+/* Botón de Modo Oscuro y Claro */
+#md{
+    margin-top:50px; /* Espacio superior */
+    width:auto; /* Anchura */
+    height:50px; /* Altura */
+    cursor:pointer; /* Cursor de dedo */
+}
+
+/* Pestaña responsive */
+.cabecera .intercambio-navegacion{
+    display:none; /* Que no se vea */
+    background-color: transparent; /* Fondo transparente */
+    font-size: 40px; /* Tamaño letra */
+    border: none; /* Sin borde */
+    color: var(--Azul); /* Color */
+}
+
+/* Hover de pestaña responsive */
+.cabecera .intercambio-navegacion:hover{
+    animation-name: cambioColor; /* Animación */
+    animation-iteration-count: infinite; /* Infinita */
+    animation-duration: 4s; /* Duración */
+    transform: scale(1.1); /* Aumento tamaño de la letra un 10% */
+    cursor:pointer; /* Cursor de dedo */
+    color: var(--Azul); /* Color */
+}
+
+/* FIN CABECERA *********************************************************************************/
     
-    @font-face {
-        font-family: 'fran';
-        src: url('fonts/Franchise.ttf');
-    }
-    
-    @font-face {
-        font-family: 'adventure';
-        src: url('fonts/Adventure.otf');
-    }
-    
-    @font-face {
-        font-family: 'altone';
-        src: url('fonts/AltoneTrial-Bold.ttf');
-    }
-    
-    @keyframes cambioColor {
-        0%{ color:rgb(8, 5, 209);}
-        20%{color:rgb(8, 5, 209);}
-        40%{color:rgb(8, 5, 209);}
-        60%{color:rgb(8, 5, 209);}
-        80%{color:rgb(8, 5, 209);}
-        100%{color:rgb(8, 5, 209);}
-    }
-    
-    .cabecera{
-        display:flex;
-        flex-direction:row;
-        justify-content:space-between;
-        background-color:var(--Cabecera);
-        height: 150px;
-    }
-    
-    .cabecera .logoLetra a h2{
-        color:var(--Azul);
-        font-family: 'fran';
-        font-size:90px;
-        text-align: center;
-        margin-top:30px;
-        margin-left:30px;
-        cursor:pointer;
-    }
-    
-    .logoLetra .actual a h2{
-        border-bottom: 2px solid var(--Azul);
-    }
-    
-    .logoLetra .actual a h2:hover{
-        border-bottom: 0px;
-        transform:scale(1);
-    }
-    
-    .logoLetra h2:hover{
-        animation-name:cambioColor;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
-        transform:scale(1.1);
-    }
-    
-    .logo img{
-        width:150px;
-        height:auto;
-        cursor:pointer;
+/* CUERPO ***************************************************************************************/
+
+/* Carrusel ******************/
+
+/* Contenedor */
+.slider-box{
+    width:700px; /* Anchura */
+    height:360px; /* Altura */
+    margin:50px auto 0; /* Espacios */
+    overflow:hidden; /* Cuando uan imagen se desplaza fuera de la caja que no se vea */
+    border: 2px solid; /* Borde negro de 2 pixeles */
+}
+
+/* Contenido caja */
+.slider-box ul{
+    display:flex; /* Modo flex */
+    padding:0; /* Sin relleno */
+    width:400%; /* Anchura */
+    animation: slider 15s infinite alternate ease-in-out; /* Animación utilizada */
+}
+
+/* Cada imagen */
+.slider-box li{
+    width:100%; /* Anchura */
+    list-style:none; /* Sin estilo */
+    position:relative; /* Posición */
+}
+
+/* Imagen */
+.slider-box img{
+    width:100%; /* Anchura */
+}
+
+/* Fin Carrusel *******************************/
+
+/* Colores con borde inferior **************************/
+
+/* Color azul */
+.azul{
+    border-bottom: 3px solid;
+    color:var(--AzulOscuro)
+}
+/* Color naranja */
+.naranja{
+    border-bottom: 3px solid;
+    color:var(--Naranja);
+}
+/* Color amarillo */
+.amarillo{
+    border-bottom: 3px solid;
+    color:var(--AmarilloOscuro);
+}
+/* Color amarillo oscuro */
+.amarilloOscuro{
+    border-bottom: 3px solid;
+    color:var(--AmarilloOscuro);
+}
+/* Color azul oscuro */
+.azulOscuro{
+    border-bottom: 3px solid;
+    color:var(--AzulOscuro)
+}
+/* Color morado */
+.morado{
+    border-bottom: 3px solid;
+    color:var(--Morado);
+}
+/* Color rojo */
+.rojo{
+    border-bottom: 3px solid;
+    color:var(--Rojo);
+}
+/* Color salmon */
+.salmon{
+    border-bottom: 3px solid;
+    color:var(--Salmon);
+}
+/* Color rosa */
+.rosa{
+    border-bottom: 3px solid;
+    color:var(--Rosa);
+}
+/* Color violeta */
+.violeta{
+    border-bottom: 3px solid;
+    color:var(--Violeta);
+}
+/* Color verde */
+.verde{
+    border-bottom: 3px solid;
+    color:var(--Verde);
+}
+/* Color marron */
+.marron{
+    border-bottom: 3px solid;
+    color:var(--Marron);
+}
+/* Color beige */
+.beige{
+    border-bottom: 3px solid;
+    color:var(--Marron);
+}
+
+/* Fin Colores con borde inferior **************************/
+/* Título en específico */
+.mugi .titulo{
+    margin-top:-80px; /* Espacio superior */
+}
+
+/* Títulos */
+.titulo h1{
+    color:var(--Texto); /* Color */
+    text-align:center; /* Alineación del texto al centro */
+    margin-top: 150px; /* Espacio superior */
+    margin-bottom:50px; /* Espacio inferior */
+    font-size:50px; /* Tamaño letra */
+    font-family: 'altone'; /* Fuente */
+}
+
+/* Texto de las imágenes a la derecha */
+.imagenDerecha .texto{
+    display:flex; /* Modo flex */
+    justify-content:space-around; /* Espacio alrededor */
+}
+
+/* Imágenes a la derecha */
+.imagenDerecha .texto img{
+    width:400px; /* Anchura */
+    height:640px; /* Altura */
+    border-radius:5%; /* Bordes redondeados */
+    margin-right:200px; /* Espacio derecho */
+}
+
+/* Texto grande de las imágenes a la derecha */
+.imagenDerecha .texto h4{
+    color:var(--Texto); /* Color texto */
+    text-align:justify; /* Texto justificado */
+    margin-right:150px; /* Espacio derecho */
+    margin-left:220px; /* Espacio izquierdo */
+    font-size:20px; /* Tamaño letra */
+    font-family: 'altone'; /* Fuente */
+}
+
+/* Texto de imagen a la izquierda */
+.imagenIzquierda .texto{
+    display:flex; /* Modo flex */
+    justify-content:space-around; /* Espacio alrededor */
+}
+
+/* Imágenes a la izquierda */
+.imagenIzquierda .texto img{
+    width:400px; /* Anchura */
+    height:640px; /* Altura */
+    border-radius:5%; /* Bordes redondeados */
+    margin-left:200px; /* Espacio a la izquierda */
+}
+
+/* Texto grande de imágenes a la izquierda */
+.imagenIzquierda .texto h4{
+    color:var(--Texto); /* Color */
+    text-align:justify; /* Texto justificado */
+    margin-right:150px; /* Espacio derecho */
+    margin-left:160px; /* Espacio izquierdo */
+    font-size:20px; /* Tamaño de letra */
+    font-family: 'altone'; /* Fuente */
+}
+
+/* Textos grandes */
+.texto h4{
+    color:var(--Texto); /* Color */
+    text-align:justify; /* Texto justificado */
+    margin-right:100px; /* Espacio derecho */
+    margin-left:100px; /* Espacio izquierdo */
+    font-size:20px; /* Tamaño de letra */
+    font-family: 'altone'; /* Fuente */
+}
+
+/* Imagen que acompaña al texto */
+.imagenDeTexto{
+    display:flex; /* Modo flex */
+    justify-content:space-around; /* Espacio alrededor */
+}
+
+/* Imagen que acompaña al texto concretamente*/
+.imagenDeTexto img{
+    width:800px; /* Anchura */
+    height:auto; /* Altura */
+    margin-top:50px; /* Espacio superior */
+    border-radius: 5%; /* Borde redondeado */
+}
+
+/* Imagen concreta */
+.mugi .imagenDeTexto{
+    margin-top:60px; /* Espacio superior */
+}
+
+/* Imagen de la introducción de Luffy */
+.imagenDerecha .texto .LuffyIntro img{
+    width:400px; /* Anchura */
+    height:500px; /* Altura */
+    border-radius:5%; /* Bordes redondeados */
+    margin-right:200px; /* Espacio derecho */
+    margin-bottom:50px; /* Espacio izquierdo */
+}
+
+/* Recompensas */
+.recompensas{
+    display:grid; /* Modo Grid */
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Cinco columnas proporcionales */
+    grid-template-rows: auto auto; /* Dos filas automáticas */
+    text-align: center; /* Texto alineado al centro */
+    gap:10px; /* Espacio de 10px entre elementos */
+}
+
+/* Imágenes de las Recompensas */
+.recompensas img{
+    height:400px; /* Altura */
+    width:auto; /* Anchura automática */
+    border-radius:10%; /* Borde redondeado */
+}
+
+/* Carteles */
+.carteles{
+    display:grid; /* Modo Grid */
+    grid-template-columns: 1fr 1fr 1fr; /* Tres columnas proporcionales */
+    grid-template-rows: auto;  /* Una fila */
+    text-align: center; /* Texto alineado al centro */
+    gap:10px; /* Espacio de 10px entre elementos */
+}
+
+/* Imágenes de Carteles */
+.carteles img{
+    height:400px; /* Altura */
+    width:auto; /* Anchura automática */
+    border-radius:10%; /* Bordes redondeados */
+}
+
+
+/* Recompensas de Yonkous */
+.recompensasYonkou{
+    display:grid; /* Modo Grid */
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Cuatro columnas */
+    grid-template-rows: auto auto; /* Dos filas automáticas */
+    text-align: center; /* Texto alineado al centro */
+    gap:10px; /* Espacio de 10px entre elementos */
+}
+
+/* Imágenes de Recompensas de Yonkous */
+.recompensasYonkou img{
+    height:400px; /* Altura */
+    width:auto; /* Anchura automática */
+    border-radius:10%; /* Bordes redondeados */
+}
+
+/* Botón para volver arriba */
+.botonVolverArriba {
+    position: fixed; /* Posición fija */
+    bottom: 20px; /* Espacio inferior */
+    right: 20px; /* Espacio derecho */
+    background-color: transparent; /* Fondo transparente */
+    color: #0d0d0d; /* Color de letra */
+    border: 2px solid rgb(54, 54, 54); /* Borde gris de 2px*/
+    border-radius: 5px; /* Borde redondeado */
+    padding: 10px 20px; /* Relleno */
+    cursor: pointer; /* Cursor de dedo */
+    display: none; /* Que no se vea */
+    transition: opacity 0.3s ease-in-out; /* Transición */
+}
+
+/* Hover de botón para volver arriba */
+.botonVolverArriba:hover {
+    background-color: rgb(3, 3, 3); /* Fondo negro */
+    color:rgb(255, 254, 254); /* Color blanco */
+}
+
+/* FIN CUERPO ************************************************************/
+
+/* PIE DE PÁGINA *********************************************************/
+
+/* Texto del pie */
+.pie p{
+    color:var(--Texto); /* Color */
+    font-family: 'altone'; /* Fuente */
+    font-size:20px; /* Tamaño texto */
+    text-align:center; /* Texto alineado al centro */
+    margin-top:200px; /* Espacio superior */
+    margin-bottom:20px; /* Espacio inferior */
+}
+
+/* PIE DE PÁGINA *********************************************************/
+
+/* Texto del pie */
+.pie p{
+    color:var(--Texto); /* Color */
+    font-family: 'altone'; /* Fuente */
+    font-size:20px; /* Tamaño texto */
+    text-align:center; /* Texto alineado al centro */
+    margin-top:200px; /* Espacio superior */
+    margin-bottom:20px; /* Espacio inferior */
+}
+
+/* FIN PIE DE PÁGINA *********************************************************/
+
+/* RESPONSIVE ****************************************************************/
+
+/* Responsive de ancho menor a 1240px */
+@media screen and (max-width: 1240px) {
+    /* Texto h4*/
+    .texto h4 {
+        margin-right: 100px; /* Espacio derecho */
+        margin-left: 100px; /* Espacio izquierdo */
     }
 
-    #logo{
-        border-radius:40%;
+    /* Cabecera en general */
+    .cabecera {
+        display: flex; /* Modo flex */
+        justify-content: space-between; /* Espacio entre elementos */
+        width: 100%; /* Anchura */
+        margin-top: 20px; /* Espacio superior */
+        bottom: 0; /* Espacio inferior */
+        flex-direction: row; /* Dirección de elementos en fila */
     }
-    
-    .navegacion {
-        display:flex;
-        flex-direction: row;
-        justify-content:space-between;
-        text-align:center;
-        margin-top:60px;
+
+    /* Apartado de navegación en cabecera */
+    .cabecera .navegacion {
+        display: none; /* No se ve */
+        width: 100%; /* Anchura */
+        background-color: var(--Cabecera); /* Fondo */
+        flex-direction: column;  /* Dirección en columna */
+        top: 200px; /* Espacio superior */
+        position: absolute; /* Posición */
     }
-    
-    .navegacion .actual a{
-        border-bottom: 2px solid var(--Azul);
-        width:140px;
+
+    /* Pestaña responsive */
+    .cabecera .intercambio-navegacion {
+        display: block; /* Ahora si se ve la pestaña */
+        padding-right: 20px; /* Relleno derecho */
     }
-    
-    .navegacion .actual a:hover{
-        border-bottom: 0px;
+
+    /* Apartado de navegación cuando se ve*/
+    .cabecera .navegacion--visible {
+        display: flex; /* Modo flex */
+        flex-direction: row; /* Dirección en fila */
+        align-items: center; /* Alineacion de elementos al centro */
+        background-color:transparent; /* Fondo transparente */
     }
-    
-    .navegacion a{
-        margin-left:50px;
-        margin-right:50px;
-        text-decoration: none;
-        font-size:32px;
-        color: var(--Azul);
-        font-family: 'adventure';
-        cursor:pointer;
+
+    /* Links de navegación */
+    .navegacion a {
+        width: 100%;  /* Anchura */
+        text-align: center; /* Alineacion del texto al centro */
+        margin: 0 0; /* Espacios */
+        margin-top:-40px; /* Espacio superior */
     }
-    
-    .navegacion a:hover{
-        transform:scale(1.2);
-        animation-name:cambioColor;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
+
+    /* Contenido */
+    .contenido {
+        margin-top: 200px; /* Espacio superior */
     }
-    
-    /* Botón de Modo Oscuro y Claro */
-    #md{
-        margin-top:50px;
-        width:auto;
-        height:50px;
-        cursor:pointer;
-    }
-    
-    .slider-box{
-        width:700px;
-        height:360px;
-        margin:50px auto 0;
-        overflow:hidden;
-    }
-    
-    .slider-box ul{
-        display:flex;
-        padding:0;
-        width:400%;
-        animation: slider 15s infinite alternate ease-in-out;
-    }
-    
-    .slider-box li{
-        width:100%;
-        list-style:none;
-        position:relative;
-    }
-    
-    .slider-box img{
-        width:100%;
-    }
-    
-    .slider-box{
-        border: 2px solid;
-    }
-    
-    .azul{
-        border-bottom: 3px solid;
-        color:var(--AzulOscuro)
-    }
-    
-    .naranja{
-        border-bottom: 3px solid;
-        color:var(--Naranja);
-    }
-    
-    .amarillo{
-        border-bottom: 3px solid;
-        color:var(--AmarilloOscuro);
-    }
-    
-    .amarilloOscuro{
-        border-bottom: 3px solid;
-        color:var(--AmarilloOscuro);
-    }
-    
-    .azulOscuro{
-        border-bottom: 3px solid;
-        color:var(--AzulOscuro)
-    }
-    
-    .morado{
-        border-bottom: 3px solid;
-        color:var(--Morado);
-    }
-    
-    .rojo{
-        border-bottom: 3px solid;
-        color:var(--Rojo);
-    }
-    
-    .salmon{
-        border-bottom: 3px solid;
-        color:var(--Salmon);
-    }
-    
-    .rosa{
-        border-bottom: 3px solid;
-        color:var(--Rosa);
-    }
-    
-    .violeta{
-        border-bottom: 3px solid;
-        color:var(--Violeta);
-    }
-    
-    .verde{
-        border-bottom: 3px solid;
-        color:var(--Verde);
-    }
-    
-    .marron{
-        border-bottom: 3px solid;
-        color:var(--Marron);
-    }
-    
-    .beige{
-        border-bottom: 3px solid;
-        color:var(--Marron);
-    }
-    
-    .titulo h2{
-        color:var(--Texto);
-        text-align:center;
-        margin-top: 150px;
-        margin-bottom:50px;
-        font-size:40px;
-        font-family: 'altone';
-    }
-    
-    .mugi .titulo{
-        margin-top:-80px;
-    }
-    
-    .titulo h1{
-        color:var(--Texto);
-        text-align:center;
-        margin-top: 150px;
-        margin-bottom:50px;
-        font-size:50px;
-        font-family: 'altone';
-    }
-    
+
+}
+
+/* Responsive de ancho menor a 1650px */
+@media screen and (max-width: 1650px) {
+
+    /* Texto de imagen a la derecha */
     .imagenDerecha .texto{
-        display:flex;
-        justify-content:space-around;
+        display:flex; /* Modo flex */
+        flex-direction: column; /* Dirección en columna */
+        justify-content:center; /* Elementos al centro verticalmente */
+        align-items: center; /* Elementos al centro horizontalmente */
     }
-    
+
+    /* Imagen a la derecha */
     .imagenDerecha .texto img{
-        width:400px;
-        height:640px;
-        border-radius:5%;
-        margin-right:200px;
+        width:400px; /* Anchura */
+        height:auto; /* Altura automática */
+        border-radius:5%; /* Bordes redondeados */
+        margin-left:200px; /* Espacio izquierdo */
     }
     
+    /* Texto h4 de imagen a la derecha */
     .imagenDerecha .texto h4{
-        color:var(--Texto);
-        text-align:justify;
-        margin-right:150px;
-        margin-left:220px;
-        font-size:20px;
-        font-family: 'altone';
+        margin-right:100px; /* Espacio derecho */
+        margin-left:100px; /* Espacio izquierdo */
+        margin-bottom:50px; /* Espacio inferior */
     }
-    
+
+    /* Texto de imagen a la izquierda */
     .imagenIzquierda .texto{
-        display:flex;
-        justify-content:space-around;
+        display:flex; /* Modo flex */
+        flex-direction: column-reverse; /* Dirección en columna al revés */
+        justify-content:center; /* Elementos alineados al centro verticalmente */
+        align-items: center; /* Elementos alineados al centro horizontalmente */
     }
     
+    /* Imagen a la izquierda */
     .imagenIzquierda .texto img{
-        width:400px;
-        height:640px;
-        border-radius:5%;
-        margin-left:200px;
+        width:400px; /* Anchura */
+        height:auto; /* Altura */
+        border-radius:5%; /* Bordes redondeados */
+        margin-top:70px; /* Espacio superior */
+        margin-right:200px; /* Espacio derecho */
+
     }
     
+    /* Texto h4 de imagen a la izquierda */
     .imagenIzquierda .texto h4{
-        color:var(--Texto);
-        text-align:justify;
-        margin-right:150px;
-        margin-left:160px;
-        font-size:20px;
-        font-family: 'altone';
+        margin-right:100px; /* Espacio derecho */
+        margin-left:100px; /* Espacio izquierdo */
     }
-    
-    .texto h4{
-        color:var(--Texto);
-        text-align:justify;
-        margin-right:100px;
-        margin-left:100px;
-        font-size:20px;
-        font-family: 'altone';
-    }
-    
-    .imagenDeTexto{
-        display:flex;
-        justify-content:space-around;
-    }
-    .imagenDeTexto img{
-        width:800px;
-        height:auto;
-        margin-top:50px;
-        border-radius: 5%;
-    }
-    
-    .mugi .imagenDeTexto{
-        margin-top:60px;
-    }
-    
-    .imagenDerecha .texto .LuffyIntro img{
-        width:400px;
-        height:500px;
-        border-radius:5%;
-        margin-right:200px;
-        margin-bottom:50px;
-    }
-    
-    .pie p{
-        color:var(--Texto);
-        font-family: 'altone';
-        font-size:20px;
-        text-align:center;
-        margin-top:200px;
-        margin-bottom:20px;
-    }
-    
-    .cabecera .intercambio-navegacion{
-    
-        display:none; 
-        background-color: transparent;
-        font-size: 40px;
-        border: none;
-        color: var(--Azul);
-    
-    }
-    .cabecera .intercambio-navegacion:hover{
-    
-        animation-name: cambioColor;
-        animation-iteration-count: infinite;
-        animation-duration: 4s;
-        transform: scale(1.1);
-        cursor:pointer;
-        color: var(--Azul);
-    
-    }
-    
-    @keyframes slider {
-        0% { margin-left: 0; }
-        25% { margin-left: 0; }
-    
-        30% { margin-left: -100%; }
-        55% { margin-left: -100%; }
-    
-        60% { margin-left: -200%; }
-        85% { margin-left: -200%; }
-    
-        90% { margin-left: -300%; }
-        100% { margin-left: -300%; }
-    }
-    
-    @keyframes cambioSombra{
-        0%{ box-shadow: 0 0 50px red;}
-        20%{box-shadow: 0 0 50px rgb(255, 123, 0);}
-        40%{box-shadow: 0 0 50px rgb(246, 234, 6);}
-        60%{box-shadow: 0 0 50px rgb(98, 255, 0);}
-        80%{box-shadow: 0 0 50px rgb(0, 255, 251);}
-        100%{box-shadow: 0 0 50px rgb(255, 0, 225);}
-    }
-    
-    @media screen and (max-width: 1240px) {
-        .texto h4 {
-            color: var(--Texto);
-            text-align: justify;
-            margin-right: 100px;
-            margin-left: 100px;
-            font-size: 20px;
-            font-family: 'altone';
-        }
-    
-        .cabecera {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 20px;
-            bottom: 0;
-            flex-direction: row; 
-        }
-    
-        .cabecera .navegacion {
-            display: none;
-            width: 100%;
-            background-color: var(--Cabecera);
-            flex-direction: column; 
-            top: 200px;
-            position: absolute;
-        }
-    
-        .cabecera .intercambio-navegacion {
-            display: block;
-            padding-right: 20px;
-        }
-    
-        .cabecera .navegacion--visible {
-            display: flex;
-            flex-direction: row;
-            align-items: center; 
-        }
-    
-        .navegacion a {
-            width: 100%;  
-            text-align: center; 
-            margin: 0 0; 
-            margin-top:-40px;
-        }
-    
-        .contenido {
-            margin-top: 200px;
-        }
-    
-    }
-    
-    @media screen and (max-width: 1650px) {
-    
-        .imagenDerecha .texto{
-            display:flex;
-            flex-direction: column;
-            justify-content:center;
-            align-items: center;
-        }
-    
-        .imagenDerecha .texto img{
-            width:400px;
-            height:auto;
-            border-radius:5%;
-            margin-left:200px;
-        }
-        
-        .imagenDerecha .texto h4{
-            color:var(--Texto);
-            text-align:justify;
-            margin-right:100px;
-            margin-left:100px;
-            margin-bottom:50px;
-            font-size:20px;
-            font-family: 'altone';
-        }
-    
-        .imagenIzquierda .texto{
-            display:flex;
-            flex-direction: column-reverse;
-            justify-content:center;
-            align-items: center;
-        }
-        
-        .imagenIzquierda .texto img{
-            width:400px;
-            height:auto;
-            border-radius:5%;
-            margin-top:70px;
-            margin-right:200px;
-    
-        }
-        
-        .imagenIzquierda .texto h4{
-            color:var(--Texto);
-            text-align:justify;
-            margin-right:100px;
-            margin-left:100px;
-            font-size:20px;
-            font-family: 'altone';
-        }
-    }
-    
-    .recompensas{
-        display:grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto auto;
-        text-align: center;
-        gap:10px;
-    }
-    
-    .recompensas img{
-        height:400px;
-        width:auto;
-        border-radius:10%;
-    }
-    
-    @media screen and (max-width: 1468px){
-    .recompensas{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto auto auto;
-    }
-    }
-    
-    @media screen and (max-width: 1177px){
-        .recompensas{
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto auto auto auto;
-        }
-    }
-    
-    @media screen and (max-width: 880px){
-        .recompensas{
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto auto auto;
-        }
-    }
-    
-    @media screen and (max-width: 590px){
-        .recompensas{
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto auto auto;
-        }
-    }
-    
-    .carteles{
-        display:grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto;
-        text-align: center;
-        gap:10px;
-    }
-    
-    .carteles img{
-        height:400px;
-        width:auto;
-        border-radius:10%;
-    }
-    
-    @media screen and (max-width: 860px){
-        .carteles{
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto auto auto;
-        }
-    }
-    
+}
+
+/* Responsive de ancho menor a 1173px */
+@media screen and (max-width: 1173px){
+    /* Recompensas de Yonkou */
     .recompensasYonkou{
-        display:grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto auto;
-        text-align: center;
-        gap:10px;
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columnas */
+        grid-template-rows: auto auto auto; /* 3 filas */
+    } 
+}
+
+/* Responsive de ancho menor a 885px */
+@media screen and (max-width: 885px){
+    /* Recompensas de Yonkou */
+    .recompensasYonkou{
+        grid-template-columns: 1fr 1fr; /* 2 columnas */
+        grid-template-rows: auto auto auto auto; /* 4 filas */
     }
-    
-    .recompensasYonkou img{
-        height:400px;
-        width:auto;
-        border-radius:10%;
+}
+
+/* Responsive de ancho menor a 590px */
+@media screen and (max-width: 590px){
+    /* Recompensas de Yonkou */
+    .recompensasYonkou{
+        grid-template-columns: 1fr; /* 1 columna */
+        grid-template-rows: auto auto auto auto auto ; /* 5 filas */
     }
-    
-    @media screen and (max-width: 1173px){
-        .recompensasYonkou{
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto auto auto;
-        }
+}
+
+/* Responsive de ancho menor a 860px */
+@media screen and (max-width: 860px){
+    /* Carteles */
+    .carteles{
+        grid-template-columns: 1fr; /* 1 columna */
+        grid-template-rows: auto auto auto auto auto auto; /* 6 filas */
     }
-    
-    @media screen and (max-width: 885px){
-        .recompensasYonkou{
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto auto;
-        }
+}
+
+/* Responsive de ancho menor a 1468px */
+@media screen and (max-width: 1468px){
+    /* Recompensas */
+    .recompensas{
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 columnas */
+        grid-template-rows: auto auto auto; /* 3 filas */
     }
+}
     
-    @media screen and (max-width: 590px){
-        .recompensasYonkou{
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto auto ;
-        }
+/* Responsive de ancho menor a 1177px */
+@media screen and (max-width: 1177px){
+    /* Recompensas */
+    .recompensas{
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columnas */
+        grid-template-rows: auto auto auto auto; /* 4 filas */
     }
+}
     
-    
-    
-    .botonVolverArriba {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: transparent;
-        color: #0d0d0d;
-        border: 2px solid rgb(54, 54, 54);
-        border-radius: 5px;
-        padding: 10px 20px;
-        cursor: pointer;
-        display: none;
-        transition: opacity 0.3s ease-in-out;
+/* Responsive de ancho menor a 880px */
+@media screen and (max-width: 880px){
+    /* Recompensas */
+    .recompensas{
+        grid-template-columns: 1fr 1fr; /* 2 columnas */
+        grid-template-rows: auto auto auto auto auto; /* 5 filas */
     }
+}
     
-    .botonVolverArriba:hover {
-        background-color: rgb(3, 3, 3);
-        color:rgb(255, 254, 254);
+/* Responsive de ancho menor a 590px */
+@media screen and (max-width: 590px){
+    /* Recompensas */
+    .recompensas{
+        grid-template-columns: 1fr; /* 1 columna */
+        grid-template-rows: auto auto auto auto auto auto; /* 6 filas */
+    }
+}
+
+/* Responsive de ancho menor a 720px */
+@media screen and (max-width: 720px) {
+    /* Contenedor carrusel */
+    .slider-box {
+        width: 400px; /* Tamaño ajustado para dispositivos móviles */
+        height: 280px; /* Altura automática */
+        margin: 20px auto 0; /* Ajuste de márgenes */
+        overflow: hidden; /* Oculta el desbordamiento */
     }
 
-    @media screen and (max-width: 720px) {
-        .slider-box {
-            width: 400px; /* Tamaño ajustado para dispositivos móviles */
-            height: 280px; /* Altura automática */
-            margin: 20px auto 0; /* Ajuste de márgenes */
-            overflow: hidden; /* Oculta el desbordamiento */
-        }
-    
-        .slider-box ul {
-            display: flex; /* Cambia a un diseño de caja flexible */
-            padding: 0;
-            width: 400%; /* Ancho ajustado para dispositivos móviles */
-            transition: transform 0.5s ease; /* Agrega una transición suave */
-        }
-    
-        .slider-box li {
-            flex: 0 0 25%; /* Ajusta el ancho de los elementos a 25% para mostrar solo una imagen a la vez */
-        }
-    
-        .slider-box img {
-            width: 100%; /* Ancho del 100% para adaptarse al contenedor */
-            height: 280px; /* Altura automática para mantener la proporción */
-        }
-    
-        .texto h4{
-            color:var(--Texto);
-            text-align:justify;
-            margin-right:10px;
-            margin-left:10px;
-            font-size:20px;
-            font-family: 'altone';
-        }
-    
-        .imagenDerecha .texto h4{
-            color:var(--Texto);
-            text-align:justify;
-            margin-right:10px;
-            margin-left:10px;
-            font-size:20px;
-            font-family: 'altone';
-        }
-    
-        .imagenIzquierda .texto h4{
-            color:var(--Texto);
-            text-align:justify;
-            margin-right:10px;
-            margin-left:10px;
-            font-size:20px;
-            font-family: 'altone';
-        }
-    
-        .cabecera .logoLetra a h2{
-            color:var(--Azul);
-            font-family: 'fran';
-            font-size:60px;
-            text-align: center;
-            margin-top:50px;
-            margin-left:30px;
-            margin-right:10px;
-            cursor:pointer;
-        }
-    
-        .logo img{
-            width:90px;
-            height:auto;
-            margin-top:35px;
-        }
-    
-        .cabecera .intercambio-navegacion{
-            font-size: 30px;
-        }
-    
-        .cabecera .navegacion--visible{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-top:20px;
-            background-color:transparent;
-        }
-    
-        .cabecera .navegacion--visible a{
-            display:inline-block;
-            font-size:30px;
-            margin-bottom:50px;
-        }
-
-        .botonVolverArriba{
-            margin-right:50%;
-        }
-    
+    /* Lista de imágenes del carrusel */
+    .slider-box ul {
+        display: flex; /* Cambia a un diseño de caja flexible */
+        padding: 0; /* Quitamos relleno */
+        width: 400%; /* Ancho ajustado para dispositivos móviles */
+        transition: transform 0.5s ease; /* Agrega una transición suave */
     }
+
+    /* Elemento de la lista del carrusel */
+    .slider-box li {
+        flex: 0 0 25%; /* Ajusta el ancho de los elementos a 25% para mostrar solo una imagen a la vez */
+    }
+
+    /* Imagen del carrusel */
+    .slider-box img {
+        width: 100%; /* Ancho del 100% para adaptarse al contenedor */
+        height: 280px; /* Altura automática para mantener la proporción */
+    }
+
+    /* Texto h4 */
+    .texto h4{
+        margin-right:20px; /* Espacio derecho */
+        margin-left:20px; /* Espacio izquierdo */
+    }
+
+    /* Texto h4 de las imágenes a la derecha */
+    .imagenDerecha .texto h4{
+        margin-right:20px; /* Espacio derecho */
+        margin-left:20px; /* Espacio izquierdo */
+    }
+
+    /* Texto h4 de las imágenes a la izquierda */
+    .imagenIzquierda .texto h4{
+        margin-right:20px; /* Espacio derecho */
+        margin-left:20px; /* Espacio izquierdo */
+    }
+
+    /* Logo en letras */
+    .cabecera .logoLetra a h2{
+        font-size:60px; /* Tamaño de letra */
+        margin-top:50px; /* Espacio superior */
+        margin-left:30px; /* Espacio izquierdo */
+        margin-right:10px; /* Espacio derecho */
+    }
+
+    /* Imagen del logo */
+    .logo img{
+        width:90px; /* Anchura */
+        height:auto; /* Altura automática */
+        margin-top:35px; /* Espacio superior */
+    }
+
+    /* Pestaña responsive de la cabecera */
+    .cabecera .intercambio-navegacion{
+        font-size: 30px; /* Tamaño de letra */
+    }
+
+    /* Apartado de navegación visible */
+    .cabecera .navegacion--visible{
+        display: grid; /* Modo grid */
+        grid-template-columns: 1fr 1fr; /* 2 columnas proporcionales */
+        margin-top:20px; /* Espacio superior */
+    }
+
+    /* Links del apartado de navegación visible */
+    .cabecera .navegacion--visible a{
+        display:inline-block; /* Modo en bloque y línea */
+        font-size:30px; /* Tamaño de letra */
+        margin-bottom:50px; /* Espacio inferior */
+    }
+
+    /* Botón para volver arriba */
+    .botonVolverArriba{
+        margin-right:40%; /* Espacio derecho */
+    }
+}
+
+/* FIN RESPONSIVE ************************************************************/
+
+
     
     
     
